@@ -34,7 +34,7 @@ object Project21_Build3 : BuildType({
     name = "build3"
     steps {
         script {
-            scriptContent = "ls repo3"
+            scriptContent = "ls"
         }
     }
     vcs {
