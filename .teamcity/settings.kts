@@ -31,7 +31,11 @@ object Project21_Build1 : BuildType({
 
 object Project21_Build3 : BuildType({
     name = "build3"
-
+    steps {
+        script {
+            scriptContent = "ls repo3"
+        }
+    }
     vcs {
         root(DslContext.settingsRoot)
     }
@@ -60,7 +64,11 @@ object Project22_Build2 : BuildType({
 
 object Project22_Build3 : BuildType({
     name = "build3"
-
+    steps {
+        script {
+            scriptContent = "ls"
+        }
+    }
     vcs {
         root(DslContext.settingsRoot)
     }
