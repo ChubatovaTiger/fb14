@@ -1,27 +1,5 @@
 import jetbrains.buildServer.configs.kotlin.*
 
-/*
-The settings script is an entry point for defining a TeamCity
-project hierarchy. The script should contain a single call to the
-project() function with a Project instance or an init function as
-an argument.
-
-VcsRoots, BuildTypes, Templates, and subprojects can be
-registered inside the project using the vcsRoot(), buildType(),
-template(), and subProject() methods respectively.
-
-To debug settings scripts in command-line, run the
-
-    mvnDebug org.jetbrains.teamcity:teamcity-configs-maven-plugin:generate
-
-command and attach your debugger to the port 8000.
-
-To debug in IntelliJ Idea, open the 'Maven Projects' tool window (View
--> Tool Windows -> Maven Projects), find the generate task node
-(Plugins -> teamcity-configs -> teamcity-configs:generate), the
-'Debug' option is available in the context menu for the task.
-*/
-
 version = "2023.05"
 
 project {
@@ -35,10 +13,24 @@ object Project21 : Project({
     name = "project21"
 
     buildType(Project21_Build1)
+    buildType(Project21_Build3)
 })
 
 object Project21_Build1 : BuildType({
     name = "build1"
+
+    vcs {
+        root(DslContext.settingsRoot)
+    }
+   dependencies {
+        snapshot(Project21_Build3) {
+            reuseBuilds = ReuseBuilds.NO
+        }
+    }
+})
+
+object Project21_Build3 : BuildType({
+    name = "build3"
 
     vcs {
         root(DslContext.settingsRoot)
@@ -50,10 +42,24 @@ object Project22 : Project({
     name = "project22"
 
     buildType(Project22_Build2)
+buildType(Project22_Build3)
 })
 
 object Project22_Build2 : BuildType({
     name = "build2"
+
+    vcs {
+        root(DslContext.settingsRoot)
+    }
+   dependencies {
+        snapshot(Project22_Build3) {
+            reuseBuilds = ReuseBuilds.NO
+        }
+    }
+})
+
+object Project22_Build3 : BuildType({
+    name = "build3"
 
     vcs {
         root(DslContext.settingsRoot)
