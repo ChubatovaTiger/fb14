@@ -59,7 +59,7 @@ object Project21_Build1 : BuildType({
 
     vcs {
         root(DslContext.settingsRoot)
-        root(Repo3)
+        root(Repo3, "+:. => repo3")
     }
 })
 
