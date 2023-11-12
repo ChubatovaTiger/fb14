@@ -76,6 +76,12 @@ object Project21_Build3 : BuildType({
         root(DslContext.settingsRoot)
         root(Repo3, "+:. => repo3")
     }
+steps {
+    script {
+        id = "simpleRunner"
+        scriptContent = "ls repo3"
+    }
+}
 })
 
 object Project22 : Project({
