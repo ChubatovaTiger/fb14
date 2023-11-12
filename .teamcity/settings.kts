@@ -12,7 +12,9 @@ project {
 
 object Project21 : Project({
     name = "project21"
-
+params {
+    param("par1", "1")
+}
     buildType(Project21_Build1)
     buildType(Project21_Build3)
 })
