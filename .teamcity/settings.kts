@@ -48,7 +48,7 @@ object Project21 : Project({
     name = "project21"
 
     buildType(Project21_Build1)
-
+buildType(Project21_Build3)
     params {
         param("par1", "1")
     }
@@ -61,8 +61,22 @@ object Project21_Build1 : BuildType({
         root(DslContext.settingsRoot)
         root(Repo3, "+:. => repo3")
     }
+   dependencies {
+        snapshot(Project21_Build3) {
+            reuseBuilds = ReuseBuilds.NO
+        }
+    }
 })
 
+
+object Project21_Build3 : BuildType({
+    name = "build3"
+
+    vcs {
+        root(DslContext.settingsRoot)
+        root(Repo3, "+:. => repo3")
+    }
+})
 
 object Project22 : Project({
     name = "project22"
