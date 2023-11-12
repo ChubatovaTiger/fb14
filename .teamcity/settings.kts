@@ -25,6 +25,11 @@ object Project21_Build1 : BuildType({
     vcs {
         root(DslContext.settingsRoot)
     }
+    steps {
+        script {
+            scriptContent = "echo %par1%"
+        }
+    }
    dependencies {
         snapshot(Project21_Build3) {
             reuseBuilds = ReuseBuilds.NO
@@ -36,7 +41,7 @@ object Project21_Build3 : BuildType({
     name = "build3"
     steps {
         script {
-            scriptContent = "ls"
+            scriptContent = "echo %par1%"
         }
     }
     vcs {
